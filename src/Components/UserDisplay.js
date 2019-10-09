@@ -6,13 +6,17 @@ class UserDisplay extends Component {
     constructor(props){
         super(props);
         this.state = {
-            users: [{name: 'Matt'}, {name: 'Catie'}, {name: 'Tayte'}],
+            users: [],
             username: '',
             edit: false
         }
     }
 
     componentDidMount(){
+        this.getUsers();
+    }
+
+    getUsers = () => {
         axios.get('/api/users').then(res => {
             this.setState({
                 users: res.data
@@ -46,10 +50,8 @@ class UserDisplay extends Component {
         })
     }
 
-    deleteUser = (data) => {
-        this.setState({
-            users: data
-        })
+    deleteUser = () => {
+
     }
 
     render(){
@@ -59,7 +61,7 @@ class UserDisplay extends Component {
                     key={i}
                     user={user}
                     updateUser={this.updateUser}
-                    deleteUser={this.deleteUser} />
+                    getUsers={this.getUsers} />
             )
         })
         return(

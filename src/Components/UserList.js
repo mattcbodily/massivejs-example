@@ -37,7 +37,7 @@ class UserList extends Component {
     handleDelete = () => {
         axios.delete(`/api/user/${this.props.user.user_id}`)
         .then(res => {
-            this.props.deleteUser(res.data)
+            this.props.getUsers()
         })
         .catch(err => console.log(err))
     }
